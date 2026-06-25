@@ -1,0 +1,228 @@
+/* Reset e configurações globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.pagina {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+}
+
+/* Painel de controle no topo */
+.painel-controle {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 20px 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+}
+
+.painel-controle h1 {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.info-jogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Botões */
+.botao-dado, .botao-reiniciar {
+    padding: 12px 24px;
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.botao-dado {
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+}
+
+.botao-dado:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
+}
+
+.botao-reiniciar {
+    background: linear-gradient(135deg, #ff6b6b, #e63946);
+    color: white;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+}
+
+.botao-reiniciar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+}
+
+/* Informações de valor e vez */
+.info-valor, .info-vez {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.info-valor strong, .info-vez strong {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f8f9fa;
+}
+
+/* Cores para destacar a vez do jogador */
+.vermelho { color: #ff5252 !important; }
+.azul { color: #4285f4 !important; }
+.amarelo { color: #ffeb3b !important; }
+.verde { color: #4caf50 !important; }
+
+/* Área do tabuleiro */
+.area-tabuleiro {
+    display: flex;
+    justify-content: center;
+}
+
+.tabuleiro {
+    width: 520px;
+    height: 520px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    border: 3px solid #222;
+}
+
+/* Áreas de início dos jogadores */
+.area-inicio-vermelha { background-color: #ffd6d6; }
+.area-inicio-azul { background-color: #d6e4ff; }
+.area-inicio-amarela { background-color: #fff9c4; }
+.area-inicio-verde { background-color: #d9f9e8; }
+
+/* Casas do caminho principal */
+.casa {
+    border: 1px solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Casas seguras */
+.casa.segura {
+    background-color: #f0f0f0;
+}
+.casa.segura::after {
+    content: "★";
+    font-size: 12px;
+    color: #666666;
+}
+
+/* Casas coloridas do caminho */
+.casa.vermelha { background-color: #ffebee; border-color: #ef9a9a; }
+.casa.azul { background-color: #e3f2fd; border-color: #90caf9; }
+.casa.amarela { background-color: #fffde7; border-color: #fff59d; }
+.casa.verde { background-color: #e8f5e9; border-color: #a5d6a7; }
+
+/* Casas finais */
+.casa-final-vermelha { background-color: #ffcdd2; border-color: #e57373; }
+.casa-final-azul { background-color: #bbdefb; border-color: #64b5f6; }
+.casa-final-amarela { background-color: #fff9c4; border-color: #fff176; }
+.casa-final-verde { background-color: #c8e6c9; border-color: #81c784; }
+
+/* Centro do tabuleiro */
+.casa-centro {
+    background: linear-gradient(45deg, #e53935 25%, #1e88e5 25%, #1e88e5 50%, #fdd835 50%, #fdd835 75%, #43a047 75%);
+    border: 2px solid #333333;
+}
+
+/* 🎯 Formato das peças igual ao Ludo */
+.peca {
+    width: 26px;
+    height: 32px;
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    z-index: 10;
+}
+
+.peca::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0% 30%, 20% 0%, 80% 0%, 100% 30%, 90% 100%, 10% 100%);
+    border: 2px solid #222222;
+}
+
+.peca.vermelha::before { background-color: #e53935; }
+.peca.azul::before { background-color: #1e88e5; }
+.peca.amarela::before { background-color: #fdd835; }
+.peca.verde::before { background-color: #43a047; }
+
+.peca:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+
+.peca.ativa {
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.9), 0 0 12px currentColor;
+    border-radius: 50%;
+}
+
+/* Mensagem de vitória */
+.mensagem-vitoria {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(0,0,0,0.92);
+    color: #ffffff;
+    padding: 30px 50px;
+    border-radius: 16px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 0 30px rgba(255,215,0,0.6);
+    border: 2px solid #ffd700;
+    transition: transform 0.4s ease;
+}
+
+.mensagem-vitoria.ativa {
+    transform: translate(-50%, -50%) scale(1);
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Ludo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="pagina">
+        <!-- ÁREA DE CONTROLES NO TOPO -->
+        <header class="painel-controle">
+            <h1>Jogo Ludo</h1>
+            <div class="info-jogo">
+                <button id="btnDado" class="botao-dado">Jogar Dado</button>
+                <div class="info-valor">
+                    <span>Valor do dado:</span>
+                    <strong id="valorDado">0</strong>
+                </div>
+                <div class="info-vez">
+                    <span>Vez do jogador:</span>
+                    <strong id="jogadorAtual">Vermelho</strong>
+                </div>
+                <button id="btnReiniciar" class="botao-reiniciar">Reiniciar</button>
+            </div>
+        </header>
+
+        <!-- ÁREA DO TABULEIRO -->
+        <main class="area-tabuleiro">
+            <div id="tabuleiro" class="tabuleiro"></div>
+        </main>
+
+        <!-- MENSAGEM DE VITÓRIA -->
+        <div id="mensagemVitoria" class="mensagem-vitoria"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
